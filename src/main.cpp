@@ -15,7 +15,7 @@ class Graph {
 			
 			int id;
 			int cost;
-		}	
+		};	
 
 		int V;
 
