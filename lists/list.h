@@ -136,7 +136,7 @@ class List {
 			this->insertAfterNode(current, new_data);
 		};
 
-		void insertAccordingPriority(T data){
+		void insertAccordingToPriority(T data){
 
 			if(this->isEmpty() || this->head->data < data){
 				this->insertFront(data);

@@ -10,9 +10,16 @@ using namespace std;
 class Graph {
  
 	private:
+		
+		struct Vertice {
+			
+			int id;
+			int cost;
+		}	
 
 		int V;
-		List<int> *adj;
+
+		List<Vertice> *adj;
 		int ** weights;
 
 
@@ -28,7 +35,7 @@ class Graph {
 		Graph(int v){
 
 			this->V = v;
-			this->adj = new List<int>[this->V];
+			this->adj = new List<Vertice>[this->V];
 			this->weights = new int * [v];
 			
 			for(int i = 0; i < v; i++){
@@ -50,7 +57,7 @@ class Graph {
 		}
 
 		void addEdge(int v, int w, int weight){
-			adj[v].insertAccordingPriority(w);
+			adj[v].insertAccordingToPriority(w);
 			this->weights[v][w] = weight;
 		}
 
@@ -69,7 +76,7 @@ class Graph {
 			minimum_distance_costs[node] = 0;
 
 
-			frontier.insertAccordingPriority(node); // the path cost for the initial state is 0
+			frontier.insertAccordingToPriority(node); // the path cost for the initial state is 0
 		
 			while(!frontier.isEmpty()) {
 				
@@ -87,7 +94,7 @@ class Graph {
 
 							minimum_distance_costs[neighbor] = minimum_distance_costs[node] + this->weights[node][neighbor];
 							result[neighbor] = node;
-							//frontier.insertAccordingPriority(neighbor, this->weights[node][neighbor]);
+							//frontier.insertAccordingToPriority(neighbor, this->weights[node][neighbor]);
 							frontier.insertAccordingPriority(neighbor);
 						}
 				}
