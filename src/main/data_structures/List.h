@@ -27,7 +27,8 @@ class List {
 		ListType removeFront();
 		ListType removeBack();
 		ListType * copyListToArray(ListType * arr, int size);
-
+		ListNode<ListType> * getHead();
+		ListNode<ListType> * getTail();
 };
 
 template <typename ListType>
@@ -240,3 +241,13 @@ void List<ListType> :: insertAfterNode(ListNode<ListType> * prev, ListType data)
 
 }
 
+template <typename ListType>	
+ListNode<ListType> * List<ListType> :: getHead(){
+	return this->head;
+}
+
+
+template <typename ListType>	
+ListNode<ListType> * List<ListType> :: getTail(){
+	return this->tail;
+}
