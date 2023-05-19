@@ -5,7 +5,7 @@ template <typename QueueType>
 
 class Queue {
 
-	private:
+	protected:
 	
 		List<QueueType> * linked_list;
 		const std :: string QUEUE_EMPTY_ERROR = "The queue is empty, nothing to dequeue";
