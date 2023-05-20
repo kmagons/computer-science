@@ -1,6 +1,5 @@
 #include "Graph.h"
-#include "Queue.h"
-#include "Stack.h"
+
 
 /* GraphVertice implementation */
 
@@ -127,6 +126,24 @@ void Graph :: addEdge(int v, int w, int cost) {
 };
 
 std :: string Graph :: getVerticeNamesBFS(int root) {
+	Queue<GraphVertice*> * queue = new Queue<GraphVertice*>();
+	GraphVerticeContainer frontier(queue);
+	std :: string output = this->getVerticeNames(root, frontier);
+	delete queue;
+	return output;
+};
+
+
+std :: string Graph :: getVerticeNamesDFS(int root) {
+	Stack<GraphVertice*> * stack = new Stack<GraphVertice*>();
+	GraphVerticeContainer frontier(stack);
+	std :: string output = this->getVerticeNames(root, frontier);
+	delete stack;
+	return output;
+};
+
+
+std :: string Graph :: getVerticeNames(int root, GraphVerticeContainer frontier) {
 
 	GraphVertice * r = this->adjacency_list[root];
 	if ( r == NULL){
@@ -135,8 +152,7 @@ std :: string Graph :: getVerticeNamesBFS(int root) {
 
 	bool visited[this->getVerticeCount()];
 	Graph :: initializeSearchMemory(this->getVerticeCount(), visited, false); 
-	Queue<GraphVertice*> frontier;
-	frontier.Enqueue(r);
+	frontier.insert(r);
 	GraphVertice * current;
 	GraphVertice * next;
 	List<GraphEdge> * edge_list;
@@ -148,7 +164,7 @@ std :: string Graph :: getVerticeNamesBFS(int root) {
 
 	while(!frontier.isEmpty()){
 		
-		current = frontier.Dequeue();
+		current = frontier.remove();
 
 		if(!visited[current->getId()]){
 
@@ -160,14 +176,13 @@ std :: string Graph :: getVerticeNamesBFS(int root) {
 		edge_list = current->getNeighbors();
 		current_edge = edge_list->getHead();
 
-
 		while(current_edge != NULL){
 			
 			neighbor_id = current_edge->getData().getTo();
 			
 			if(!visited[ neighbor_id ]){
 
-				frontier.Enqueue( this->adjacency_list[ neighbor_id ]  );
+				frontier.insert( this->adjacency_list[ neighbor_id ]  );
 				levels[neighbor_id] = "-" + levels[current->getId()];
 			}
 			current_edge = current_edge->next();
@@ -179,17 +194,6 @@ std :: string Graph :: getVerticeNamesBFS(int root) {
 
 };
 
-
-void Graph :: printDFS(int root) {
-
-	GraphVertice * r = this->adjacency_list[root];
-	if ( r == NULL){
-		throw ( std :: invalid_argument("Root node not found") );
-	}
-
-	//DFS implementation pending
-};
-
 void Graph :: initializeSearchMemory(int size, bool * visited, bool value){
 	
 	for(int i = 0; i < size; i++) {
@@ -197,4 +201,45 @@ void Graph :: initializeSearchMemory(int size, bool * visited, bool value){
 		visited[i] = value;
 	}
 
+};
+
+GraphVerticeContainer :: GraphVerticeContainer(Queue<GraphVertice*> * queue){
+
+	this->queue = queue;
+	this->stack = NULL;
+	
+};
+
+GraphVerticeContainer :: GraphVerticeContainer(Stack<GraphVertice*> * stack){
+
+	this->stack = stack;
+	this->queue = NULL;
+	
+};
+
+void GraphVerticeContainer :: insert(GraphVertice * vertice){
+
+	if(this->stack != NULL){
+		this->stack->Push(vertice);
+	}else {
+		this->queue->Enqueue(vertice);
+	}
+};
+
+GraphVertice * GraphVerticeContainer :: remove(){
+
+	if(this->stack != NULL){
+		return this->stack->Pop();
+	}else {
+		return this->queue->Dequeue();
+	}
+};
+
+bool GraphVerticeContainer :: isEmpty(){
+
+	if(this->stack != NULL){
+		return this->stack->isEmpty();
+	}else {
+		return this->queue->isEmpty();
+	}
 };

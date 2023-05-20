@@ -2,6 +2,8 @@
 #define GRAPH_H
 
 #include "List.h"
+#include "Queue.h"
+#include "Stack.h"
 
 class GraphEdge {
 
@@ -40,6 +42,23 @@ class GraphVertice {
 		int getId();
 };
 
+class GraphVerticeContainer {
+
+	private:
+		
+		Queue<GraphVertice*> * queue;
+		Stack<GraphVertice*> * stack;
+
+	public:
+
+		GraphVerticeContainer(Queue<GraphVertice*> * queue);
+		GraphVerticeContainer(Stack<GraphVertice*> * stack);
+		void insert(GraphVertice * vertice);
+		GraphVertice * remove();
+		bool isEmpty();
+
+};
+
 class Graph {
 
 	private:
@@ -56,6 +75,8 @@ class Graph {
 		void addEdge(int v, int w, int cost);
 		void addVertice(int v, std :: string name);
 		std :: string getVerticeNamesBFS(int root);
+		std :: string getVerticeNamesDFS(int root);
+		std :: string getVerticeNames(int root,  GraphVerticeContainer frontier);
 		void printDFS(int root);
 		int getVerticeCount();
 		int getEdgeCount();

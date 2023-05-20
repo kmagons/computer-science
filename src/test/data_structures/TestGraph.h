@@ -13,6 +13,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 	CPPUNIT_TEST (addVerticeTest);
 	CPPUNIT_TEST (addEdgeTest);
 	CPPUNIT_TEST (getBFSVerticeNamesTest);
+	CPPUNIT_TEST (getDFSVerticeNamesTest);
 	CPPUNIT_TEST_SUITE_END ();
 
 	public:
@@ -23,6 +24,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 		void addVerticeTest (void);	
 		void addEdgeTest (void);
 		void getBFSVerticeNamesTest (void);
+		void getDFSVerticeNamesTest (void);
 
 	private:
 		Graph * graph;
@@ -31,5 +33,6 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 		int number_of_edges;
 		int number_of_vertices;
 		std :: string bfs_test_output;
+		std :: string dfs_test_output;
 };
 #endif

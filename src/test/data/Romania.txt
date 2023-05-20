@@ -66,6 +66,27 @@
 --------->Iasi
 ---------->Neamt
 
+->Oradea
+-->Sibiu
+--->Fagaras
+---->Bucharest
+----->Urziceni
+------>Vaslui
+------->Iasi
+-------->Neamt
+------>Hirsova
+------->Eforie
+----->Giurgiu
+----->Pitesti
+------>Craiova
+------->RimnicuVilcea
+------->Drobeta
+-------->Mehadia
+--------->Lugoj
+---------->Timisoara
+----------->Arad
+------------>Zerind
+
 0 389
 1 374
 2 366

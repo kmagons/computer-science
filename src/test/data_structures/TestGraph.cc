@@ -11,7 +11,7 @@ void testgraph :: setUp (void)
 	int v, w, distance;
 	std :: string cityName;
 	int cityID;
-	std :: string bfs_output, bfs_line = "";
+	std :: string bfs_output, dfs_output, line = "";
 
 	file.open(this->TEST_FILE);
 
@@ -35,15 +35,20 @@ void testgraph :: setUp (void)
 
 		
 		for(int i = 0; i < number_of_vertices; i++){
-				file >> bfs_line;
-				bfs_output += bfs_line + '\n';
+				file >> line;
+				bfs_output += line + '\n';
 		}
 
-	this->number_of_vertices = number_of_vertices;
-	this->number_of_edges = number_of_edges; 
-	this->bfs_test_output = bfs_output;
+		for(int i = 0; i < number_of_vertices; i++){
+				file >> line;
+				dfs_output += line + '\n';
+		}
 
-	file.close();
+		this->number_of_vertices = number_of_vertices;
+		this->number_of_edges = number_of_edges; 
+		this->bfs_test_output = bfs_output;
+		this->dfs_test_output = dfs_output;
+		file.close();
 	}
 }
 
@@ -70,4 +75,11 @@ void testgraph :: getBFSVerticeNamesTest (void)
 {	
 	std :: string output = this->graph->getVerticeNamesBFS( 0 );
 	CPPUNIT_ASSERT_EQUAL (this->bfs_test_output, output );
+}
+
+void testgraph :: getDFSVerticeNamesTest (void)
+{	
+	std :: string output = this->graph->getVerticeNamesDFS( 0 );
+    CPPUNIT_ASSERT_EQUAL (this->dfs_test_output, output );
+
 }
