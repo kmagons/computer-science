@@ -1,39 +1,40 @@
 #include "List.h"
-#include "ListNode.h"
+
+class GraphEdge {
+
+	private:
+
+		int from;
+		int to;
+		int cost;
+	
+	public:
+
+		GraphEdge(int from, int to, int cost );
+		GraphEdge();
+		int getCost();
+		int getFrom();
+		int getTo();
+
+
+};
+
 
 class GraphVertice {
-	
-	private:
+		private:
 		
 		int id;
 		std :: string name;
-		List<int> * adjacency_list;		
+		List<GraphEdge> * adjacency_list;		
 
 	public:
 
 		GraphVertice(int id, std :: string name);
 		~GraphVertice();
 		std :: string getName();
-		ListNode<int> * getNeighbors();
-		void addNeighbor(int id);
-};
-
-class GraphEdge {
-
-	private:
-
-		GraphVertice * from;
-		GraphVertice * to;
-		int cost;
-	
-	public:
-
-		GraphEdge(GraphVertice * from, GraphVertice * to, int cost );
-		int getCost();
-		GraphVertice * getFrom();
-		GraphVertice * getTo();
-
-
+		List<GraphEdge> * getNeighbors();
+		void addNeighbor(GraphVertice * adj, int cost);
+		int getId();
 };
 
 class Graph {
@@ -41,14 +42,14 @@ class Graph {
 	private:
 
 		int number_of_vertices;
-		List<GraphVertice> * adjacency_list;
+		GraphVertice ** adjacency_list;
 
 	public:
 		
 		Graph(int number_of_vertices);
 		~Graph();
 		void addEdge(int v, int w, int cost);
-		void addVertice(int v, std :: string name) throw (std :: length_error);
+		void addVertice(int v, std :: string name);
 		void printBFS(int root);
 		void printDFS(int root);
 		int getVerticeCount();
