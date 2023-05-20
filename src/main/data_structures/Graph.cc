@@ -79,8 +79,6 @@ Graph :: Graph(int number_of_vertices) {
 
 };
 
-
-
 Graph :: ~Graph() {
 	
 	delete this->adjacency_list;
@@ -133,7 +131,6 @@ std :: string Graph :: getVerticeNamesBFS(int root) {
 	return output;
 };
 
-
 std :: string Graph :: getVerticeNamesDFS(int root) {
 	Stack<GraphVertice*> * stack = new Stack<GraphVertice*>();
 	GraphVerticeContainer frontier(stack);
@@ -142,14 +139,11 @@ std :: string Graph :: getVerticeNamesDFS(int root) {
 	return output;
 };
 
-
 std :: string Graph :: getVerticeNames(int root, GraphVerticeContainer frontier) {
-
 	GraphVertice * r = this->adjacency_list[root];
 	if ( r == NULL){
 		throw ( std :: invalid_argument("Root node not found"));
 	}
-
 	bool visited[this->getVerticeCount()];
 	Graph :: initializeSearchMemory(this->getVerticeCount(), visited, false); 
 	frontier.insert(r);
@@ -161,37 +155,25 @@ std :: string Graph :: getVerticeNames(int root, GraphVerticeContainer frontier)
 	std :: string levels[this->getVerticeCount()];
 	std :: string output;
 	levels[root] = "->";
-
 	while(!frontier.isEmpty()){
-		
 		current = frontier.remove();
-
 		if(!visited[current->getId()]){
-
 			output += levels[current->getId()] + current->getName() + '\n';
-		
 		}
 
 		visited[current->getId()] = true;
 		edge_list = current->getNeighbors();
 		current_edge = edge_list->getHead();
-
 		while(current_edge != NULL){
-			
 			neighbor_id = current_edge->getData().getTo();
-			
 			if(!visited[ neighbor_id ]){
-
 				frontier.insert( this->adjacency_list[ neighbor_id ]  );
 				levels[neighbor_id] = "-" + levels[current->getId()];
 			}
 			current_edge = current_edge->next();
 		}
-
 	}
-	
 	return output;
-
 };
 
 void Graph :: initializeSearchMemory(int size, bool * visited, bool value){
