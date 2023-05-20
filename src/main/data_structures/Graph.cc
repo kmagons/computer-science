@@ -1,5 +1,6 @@
 #include "Graph.h"
-
+#include "Queue.h"
+#include "Stack.h"
 
 /* GraphVertice implementation */
 
@@ -47,7 +48,7 @@ GraphEdge :: GraphEdge(int from, int to, int cost){
 };
 
 GraphEdge :: GraphEdge(){
-
+		//Default consturctor
 };
 
 int GraphEdge :: getCost(){
@@ -69,7 +70,8 @@ Graph :: Graph(int number_of_vertices) {
 	
 
 	this->number_of_vertices = number_of_vertices;
-	this->adjacency_list =  new GraphVertice * [number_of_vertices];;
+	this->adjacency_list =  new GraphVertice * [number_of_vertices];
+	this->number_of_edges = 0;
 
 	for(int i = 0; i < this->number_of_vertices; i++){
 	
@@ -89,6 +91,12 @@ Graph :: ~Graph() {
 int Graph :: getVerticeCount(){
 	
 	return this->number_of_vertices;
+
+};
+
+int Graph :: getEdgeCount(){
+	
+	return this->number_of_edges;
 
 };
 
@@ -114,17 +122,60 @@ void Graph :: addEdge(int v, int w, int cost) {
 	} else {
 
 		a->addNeighbor(b, cost);
+		this->number_of_edges++;
 	}
 };
 
-void Graph :: printBFS(int root) {
+std :: string Graph :: getVerticeNamesBFS(int root) {
 
 	GraphVertice * r = this->adjacency_list[root];
 	if ( r == NULL){
 		throw ( std :: invalid_argument("Root node not found"));
 	}
 
-	//BFS implementation pending
+	bool visited[this->getVerticeCount()];
+	Graph :: initializeSearchMemory(this->getVerticeCount(), visited, false); 
+	Queue<GraphVertice*> frontier;
+	frontier.Enqueue(r);
+	GraphVertice * current;
+	GraphVertice * next;
+	List<GraphEdge> * edge_list;
+	ListNode<GraphEdge> * current_edge;
+	int neighbor_id;
+	std :: string levels[this->getVerticeCount()];
+	std :: string output;
+	levels[root] = "->";
+
+	while(!frontier.isEmpty()){
+		
+		current = frontier.Dequeue();
+
+		if(!visited[current->getId()]){
+
+			output += levels[current->getId()] + current->getName() + '\n';
+		
+		}
+
+		visited[current->getId()] = true;
+		edge_list = current->getNeighbors();
+		current_edge = edge_list->getHead();
+
+
+		while(current_edge != NULL){
+			
+			neighbor_id = current_edge->getData().getTo();
+			
+			if(!visited[ neighbor_id ]){
+
+				frontier.Enqueue( this->adjacency_list[ neighbor_id ]  );
+				levels[neighbor_id] = "-" + levels[current->getId()];
+			}
+			current_edge = current_edge->next();
+		}
+
+	}
+	
+	return output;
 
 };
 
@@ -137,4 +188,13 @@ void Graph :: printDFS(int root) {
 	}
 
 	//DFS implementation pending
+};
+
+void Graph :: initializeSearchMemory(int size, bool * visited, bool value){
+	
+	for(int i = 0; i < size; i++) {
+
+		visited[i] = value;
+	}
+
 };

@@ -12,6 +12,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 	CPPUNIT_TEST_SUITE (testgraph);
 	CPPUNIT_TEST (addVerticeTest);
 	CPPUNIT_TEST (addEdgeTest);
+	CPPUNIT_TEST (getBFSVerticeNamesTest);
 	CPPUNIT_TEST_SUITE_END ();
 
 	public:
@@ -21,9 +22,14 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 	protected:
 		void addVerticeTest (void);	
 		void addEdgeTest (void);
+		void getBFSVerticeNamesTest (void);
 
 	private:
 		Graph * graph;
-		const int VERTICE_COUNT = 10;
+		
+		std :: string const TEST_FILE = "./src/test/data/Romania.txt";
+		int number_of_edges;
+		int number_of_vertices;
+		std :: string bfs_test_output;
 };
 #endif

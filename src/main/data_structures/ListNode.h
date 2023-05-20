@@ -1,3 +1,6 @@
+#ifndef LISTNODE_H
+#define LISTNODE_H
+
 template <typename ListNodeType>
 
 class ListNode {
@@ -63,4 +66,4 @@ void ListNode<ListNodeType> :: setPrev (ListNode<ListNodeType> * prev) {
 
 };
 
-
+#endif

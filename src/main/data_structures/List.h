@@ -1,3 +1,6 @@
+#ifndef LIST_H
+#define LIST_H
+
 #include "ListNode.h"
 #include <iostream>
 
@@ -251,3 +254,5 @@ template <typename ListType>
 ListNode<ListType> * List<ListType> :: getTail(){
 	return this->tail;
 }
+
+#endif

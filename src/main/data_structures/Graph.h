@@ -1,3 +1,6 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include "List.h"
 
 class GraphEdge {
@@ -42,7 +45,9 @@ class Graph {
 	private:
 
 		int number_of_vertices;
+		int number_of_edges;
 		GraphVertice ** adjacency_list;
+		static void initializeSearchMemory(int size, bool * visited, bool value);
 
 	public:
 		
@@ -50,7 +55,10 @@ class Graph {
 		~Graph();
 		void addEdge(int v, int w, int cost);
 		void addVertice(int v, std :: string name);
-		void printBFS(int root);
+		std :: string getVerticeNamesBFS(int root);
 		void printDFS(int root);
 		int getVerticeCount();
+		int getEdgeCount();
 };
+
+#endif

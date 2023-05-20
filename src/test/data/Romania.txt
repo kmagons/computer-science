@@ -45,6 +45,26 @@
 16 15 92
 14 15 87
 
+->Oradea
+-->Zerind
+-->Sibiu
+--->Arad
+--->RimnicuVilcea
+--->Fagaras
+---->Timisoara
+---->Craiova
+----->Pitesti
+------>Bucharest
+----->Lugoj
+----->Drobeta
+------->Giurgiu
+------->Urziceni
+------>Mehadia
+-------->Hirsova
+-------->Vaslui
+--------->Eforie
+--------->Iasi
+---------->Neamt
 
 0 389
 1 374

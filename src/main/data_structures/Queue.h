@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include "List.h"
 #include <iostream>
 
@@ -67,5 +70,7 @@ QueueType Queue<QueueType> :: Dequeue() throw ( std::length_error )  {
 	}
 	
 };
+
+#endif
 
 
