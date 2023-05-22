@@ -1,3 +1,9 @@
+/**
+ *	 This program implements a simple generic type data bidirectional linked list data structure and its basic algorithms to support usage in more complex data structures
+ *	 Author: Krists Magons
+ *	 Date: 20.05.2023
+ *	
+ */
 #ifndef LIST_H
 #define LIST_H
 
@@ -10,11 +16,54 @@ class List {
 
 	private:
 
+
+		/**
+		 * Pointer to the head node of the linked list
+		 */
 		ListNode<ListType> * head;
+		
+		/**
+ 		* Pointer to the last element in the linked list
+ 		*/
 		ListNode<ListType> * tail;
+
+		/**
+		 * Stores the current number of elements in the linked list
+		 */
 		int list_lenght;
+
+		/**
+		 * Utility function to create a new node
+		 *
+		 * 	Worst case time complexity: O(Const)
+		 *
+		 * @param data to be associated with the new node
+		 * @param prev - pointer to the previous node in the list
+		 * @param next - pointer to the next node in the list
+		 * @returns a pointer to the new node
+		 */
 		ListNode<ListType> * createListNode(ListType data, ListNode<ListType> * prev, ListNode<ListType> * next);
+		
+		/**
+		 * Utility function to remove an existing node
+		 *
+		 * 	Worst case time complexity: O(Const)
+		 *
+		 * @param elem - pointer to the node to be removed from the linked list
+		 */
 		void removeElem(ListNode<ListType> * elem);
+
+
+		/**
+		 * Utility function to insert a new node after the given existing node
+		 *
+		 * 	Worst case time complexity: O(Const)
+		 *
+		 * @param elem - pointer to the existing node after which a new node must be inserted
+		 * @param data, data to be associated with the new node
+		 */
+		
+
 		void insertAfterNode(ListNode<ListType> * prev, ListType data);
 
 	public:
