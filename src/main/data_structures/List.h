@@ -35,7 +35,7 @@ class List {
 		/**
 		 * Utility function to create a new node
 		 *
-		 * 	Worst case time complexity: O(Const)
+		 * 	Time complexity: O(Const)
 		 *
 		 * @param data to be associated with the new node
 		 * @param prev - pointer to the previous node in the list
@@ -47,7 +47,7 @@ class List {
 		/**
 		 * Utility function to remove an existing node
 		 *
-		 * 	Worst case time complexity: O(Const)
+		 * 	Time complexity: O(Const)
 		 *
 		 * @param elem - pointer to the node to be removed from the linked list
 		 */
@@ -57,29 +57,123 @@ class List {
 		/**
 		 * Utility function to insert a new node after the given existing node
 		 *
-		 * 	Worst case time complexity: O(Const)
+		 * 	Time complexity: O(Const)
 		 *
 		 * @param elem - pointer to the existing node after which a new node must be inserted
 		 * @param data, data to be associated with the new node
 		 */
 		
-
 		void insertAfterNode(ListNode<ListType> * prev, ListType data);
 
 	public:
+
+		/**
+		 * Default constructor
+		 */
 		List();
+
+		/**
+		 *	Default destructor
+		 */
 		~List();
+
+		/**
+		 *	Time complexity: O(Const)
+		 *
+		 *	@returns true if the linked list is not empty (the head pointer is not NULL), otherwise false
+		 */
 		bool isEmpty();
+
+		/**
+		 *
+		 * Time complexity: O(Const)
+		 *	@returns the number of elements in the linked list
+		 */
 		int getSize();
+
+		/**
+		 *	Method creates and inserts a new node of <data> at the end of the linked list and replaces the tail element pointer
+		 *
+		 *	Time complexity: O(Const)
+		 *
+		 *	@param data, data to be associated with the new node
+		 *
+		 */
 		void insertBack(ListType data);
-		void insertFront(ListType data);
+		
+		/**
+		 *	Method creates and inserts a new node of <data> in front of the linked list and replaces the head element pointer
+		 *
+		 *	Time complexity: O(Const)
+		 *
+		 *	@param data, data to be associated with the new node
+		 *
+		 */
+		void insertFront(ListType data); 
+		
+		/**
+		 *	Method creates and inserts a new node of <new_data> after the first occurence of an existing node of <data>
+		 *
+		 *	Time complexity: O(n), n - size of the list
+		 *
+		 * 	@param data, data of a list element after which the new node should be added
+		 *	@param new_data, data to be associated with the new node
+		 *
+		 */
 		void insertAfter(ListType data, ListType new_data);
+		
+		/**
+		 *	Method creates and inserts a new node of <data> after the first occurence of an existing node of <data_existing> which compares "smaller" of <data>
+		 *	Elements having equal <data> comparisons are sorted accoding to insertion time
+		 *
+		 *	Worst case time complexity: O(n - 1), n - size of the list (new_data is compared against the first and the last node in constant time)
+		 *
+		 * 	@param data, data of a list element after which the new node should be added
+		 *
+		 */
 		void insertAccordingToPriority(ListType data);
+		
+		/**
+		 *	Method deletes all the elements in the linked list and sets the head and tail pointers to NULL
+		 *
+		 *	Time complexity: O(n), n - size of the list
+		 */
 		void deleteList();
+		
+
+		/**
+		 *	Methods removes the first element from the linked list, deletes the element and returs the assocated <data>
+		 *	Time complexity: O(Const)
+		 *	@returns, <data> associated with the removed list element
+		 */
 		ListType removeFront();
+		
+		/**
+		 *	Methods removes the last element from the linked list, deletes the element and returs the assocated <data>
+		 *	Time complexity: O(Const)
+		 *	@returns, <data> associated with the removed list element
+		 */
 		ListType removeBack();
+
+		/**
+		 *	Method traverses the linked list from head to tail and copies <data> for each element to the given array <arr> of <size>
+		 *
+		 *	Time complexity: O(n), where n = size
+		 *
+		 *	@returns pointer to the array containing the copied <data> values
+		 */
 		ListType * copyListToArray(ListType * arr, int size);
+
+		/**
+		 * Time complexity: O(Const)
+		 * @returns pointer to the head element
+		 */
 		ListNode<ListType> * getHead();
+		
+		/**
+		 * Time complexity: O(Const)
+		 * @returns pointer to the tail element
+		 */
 		ListNode<ListType> * getTail();
 };
 
@@ -184,6 +278,9 @@ void  List<ListType> ::  deleteList(){
 		this->removeElem(current);
 		current = current->next();
 	}
+
+	this->head = NULL;
+	this->tail = NULL;
 
 };
 
