@@ -183,14 +183,12 @@ List<ListType> :: List() {
 	this->tail = NULL;
 	this->list_lenght = 0;
 
-}
+};
 
 template <typename ListType>
 List<ListType> :: ~List() {
 	this->deleteList();
-	this->head = NULL;
-	this->tail = NULL;
-}
+};
 
 template <typename ListType>
 bool List<ListType> ::  isEmpty() {
@@ -200,7 +198,7 @@ bool List<ListType> ::  isEmpty() {
 template <typename ListType>
 int  List<ListType> ::  getSize(){
 	return this->list_lenght;
-}
+};
 
 template <typename ListType>	
 void List<ListType> :: insertFront(ListType data) {
@@ -233,7 +231,7 @@ void  List<ListType> ::  insertBack(ListType data) {
 	}
 
 	this->tail = new_list_node;	
-}
+};
 
 template <typename ListType>	
 void  List<ListType> ::  insertAfter(ListType data, ListType new_data){
@@ -244,7 +242,13 @@ void  List<ListType> ::  insertAfter(ListType data, ListType new_data){
 		current = current->next();
 	}
 
-	this->insertAfterNode(current, new_data);
+	
+	if(current != NULL){
+		this->insertAfterNode(current, new_data);
+	}else{
+		this->insertBack(new_data);
+	}
+
 };
 
 
@@ -388,17 +392,17 @@ void List<ListType> :: insertAfterNode(ListNode<ListType> * prev, ListType data)
 		new_node->next()->setPrev( new_node );
 	}
 
-}
+};
 
 template <typename ListType>	
 ListNode<ListType> * List<ListType> :: getHead(){
 	return this->head;
-}
+};
 
 
 template <typename ListType>	
 ListNode<ListType> * List<ListType> :: getTail(){
 	return this->tail;
-}
+};
 
 #endif
