@@ -8,9 +8,20 @@
 class GraphEdge {
 
 	private:
-
+		
+		/**
+		 *	Integer ID identifiying the source vertice 	
+		 */
 		int from;
+
+		/**
+		 * Integer ID identifiying the target vertice
+		 */
 		int to;
+
+		/**
+		 *	Non-negative cost of the path between the vertices 
+		 */
 		int cost;
 	
 	public:
@@ -21,6 +32,12 @@ class GraphEdge {
 		int getFrom();
 		int getTo();
 
+ 	    friend bool operator== (const GraphEdge& e1, const GraphEdge& e2);
+    	friend bool operator!= (const GraphEdge& e1, const GraphEdge& e2);
+   		friend bool operator< (const GraphEdge& e1, const GraphEdge& e2);
+    	friend bool operator> (const GraphEdge& e1, const GraphEdge& e2);
+    	friend bool operator<= (const GraphEdge& e1, const GraphEdge& e2);
+    	friend bool operator>= (const GraphEdge& e1, const GraphEdge& e2);
 
 };
 

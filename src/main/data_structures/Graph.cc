@@ -63,6 +63,36 @@ int GraphEdge :: getTo(){
 	return this->to;
 };
 
+bool operator== (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost == e2.cost;
+}
+
+bool operator!= (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost != e2.cost;
+}
+
+bool operator< (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost < e2.cost;
+}
+
+bool operator> (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost > e2.cost;
+}
+
+bool operator<= (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost <= e2.cost;
+}
+
+bool operator>= (const GraphEdge& e1, const GraphEdge& e2)
+{
+    return e1.cost >= e2.cost;
+}
+
 /* Graph implementation */
 
 Graph :: Graph(int number_of_vertices) {

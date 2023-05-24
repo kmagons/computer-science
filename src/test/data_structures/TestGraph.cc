@@ -83,3 +83,26 @@ void testgraph :: getDFSVerticeNamesTest (void)
     CPPUNIT_ASSERT_EQUAL (this->dfs_test_output, output );
 
 }
+
+
+void testgraph :: operatorOverloadingTest (void)
+{	
+	
+	GraphEdge a(0, 1, 0);
+	GraphEdge b(0, 1, 1);
+	GraphEdge c(0, 1, 2);
+	GraphEdge d(2, 3, 2);
+
+	//Edges are compared to each other according to their path cost value
+	CPPUNIT_ASSERT_EQUAL(true, a == a);
+	CPPUNIT_ASSERT_EQUAL(false, a == b);
+	CPPUNIT_ASSERT_EQUAL(true, c == d);
+	CPPUNIT_ASSERT_EQUAL(true, a != b);
+	CPPUNIT_ASSERT_EQUAL(true, c > b);
+	CPPUNIT_ASSERT_EQUAL(true, c >= d);
+	CPPUNIT_ASSERT_EQUAL(true, a < b);
+	CPPUNIT_ASSERT_EQUAL(true, d > b);
+	CPPUNIT_ASSERT_EQUAL(true, c <= b);
+
+}
+
