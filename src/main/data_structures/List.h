@@ -121,7 +121,17 @@ class List {
 		 *
 		 */
 		void insertAfter(ListType data, ListType new_data);
-		
+
+		/**
+		 *	Method deletes the first node matching node which references <data>>
+		 *
+		 *	Time complexity: O(n), n - size of the list
+		 *
+		 * 	@param data, data of a list element which should be delete
+		 *
+		 */
+		void deleteElem(ListType data);
+
 		/**
 		 *	Method creates and inserts a new node of <data> after the first occurence of an existing node of <data_existing> which compares "smaller" of <data>
 		 *	Elements having equal <data> comparisons are sorted accoding to insertion time
@@ -251,6 +261,23 @@ void  List<ListType> ::  insertAfter(ListType data, ListType new_data){
 
 };
 
+
+template <typename ListType>	
+void  List<ListType> ::  deleteElem(ListType data){
+
+	ListNode<ListType> * current = this->head;
+			
+	while(current && current.getData() != data){
+		current = current->next();
+	}
+	
+	if(current != NULL){
+		
+		this->removeElem(current);
+
+	}
+
+};
 
 template <typename ListType>	
 void  List<ListType> ::  insertAccordingToPriority(ListType data){

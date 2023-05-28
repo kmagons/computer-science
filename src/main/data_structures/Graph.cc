@@ -136,7 +136,6 @@ void Graph :: addVertice(int v, std :: string name) {
 		GraphVertice * new_vertice = new GraphVertice(v, name);
 		this->adjacency_list[v] = new_vertice;
 	}
-
 };
 
 void Graph :: addEdge(int v, int w, int cost) {
@@ -212,6 +211,35 @@ void Graph :: initializeSearchMemory(int size, bool * visited, bool value){
 
 		visited[i] = value;
 	}
+
+};
+
+
+int Graph :: getCost (int from, int to){
+	
+	GraphVertice * f = this->adjacency_list[from];
+	List<GraphEdge> * neighbors;
+	ListNode<GraphEdge> * current;
+	GraphEdge e;
+
+	if(f == NULL){
+		throw (std :: invalid_argument("Starting node not found"));
+	};
+	
+	neighbors = f->getNeighbors();
+	current = neighbors->getHead();
+
+	while(current){
+		
+		e = current->getData();
+
+		if(e.getTo()== to){
+			return e.getCost();
+		}
+		current = current->next();
+	}
+	
+	throw (std :: invalid_argument("Path not found"));
 
 };
 

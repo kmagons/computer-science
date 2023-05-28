@@ -102,7 +102,19 @@ void testgraph :: operatorOverloadingTest (void)
 	CPPUNIT_ASSERT_EQUAL(true, c >= d);
 	CPPUNIT_ASSERT_EQUAL(true, a < b);
 	CPPUNIT_ASSERT_EQUAL(true, d > b);
-	CPPUNIT_ASSERT_EQUAL(true, c <= b);
+	CPPUNIT_ASSERT_EQUAL(true, b <= c);
 
 }
 
+void testgraph :: getCostTest (void)
+{	
+	
+	CPPUNIT_ASSERT_EQUAL(151, this->graph->getCost(0, 7));
+	CPPUNIT_ASSERT_EQUAL(211, this->graph->getCost(10, 12));
+	CPPUNIT_ASSERT_EQUAL(211, this->graph->getCost(12, 10));
+	CPPUNIT_ASSERT_EQUAL(90, this->graph->getCost(12, 13));
+	CPPUNIT_ASSERT_EQUAL(87, this->graph->getCost(14, 15));
+	CPPUNIT_ASSERT_EQUAL(80, this->graph->getCost(8, 7));
+	CPPUNIT_ASSERT_EQUAL(111, this->graph->getCost(3, 4));
+
+}

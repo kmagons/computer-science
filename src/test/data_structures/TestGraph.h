@@ -15,6 +15,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 	CPPUNIT_TEST (getBFSVerticeNamesTest);
 	CPPUNIT_TEST (getDFSVerticeNamesTest);
 	CPPUNIT_TEST (operatorOverloadingTest);
+	CPPUNIT_TEST (getCostTest);
 	CPPUNIT_TEST_SUITE_END ();
 
 	public:
@@ -27,6 +28,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 		void getBFSVerticeNamesTest (void);
 		void getDFSVerticeNamesTest (void);
 		void operatorOverloadingTest (void);
+		void getCostTest (void);
 
 	private:
 		Graph * graph;

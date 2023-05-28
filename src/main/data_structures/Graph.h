@@ -31,7 +31,10 @@ class GraphEdge {
 		int getCost();
 		int getFrom();
 		int getTo();
-
+		
+		/**
+		 *	Comparison operator overloading for GraphEdge objects so that they can be conveniently sorted in priority queues by path cost
+		 */
  	    friend bool operator== (const GraphEdge& e1, const GraphEdge& e2);
     	friend bool operator!= (const GraphEdge& e1, const GraphEdge& e2);
    		friend bool operator< (const GraphEdge& e1, const GraphEdge& e2);
@@ -84,6 +87,7 @@ class Graph {
 		int number_of_edges;
 		GraphVertice ** adjacency_list;
 		static void initializeSearchMemory(int size, bool * visited, bool value);
+	
 
 	public:
 		
@@ -97,6 +101,7 @@ class Graph {
 		void printDFS(int root);
 		int getVerticeCount();
 		int getEdgeCount();
+		int getCost(int from, int to);
 };
 
 #endif
