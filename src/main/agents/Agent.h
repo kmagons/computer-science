@@ -2,21 +2,66 @@
 #define AGENT_H
 
 #include "../data_structures/List.h"
-#include "..actions/Action.h"
+#include "../environments/Environment.h"
+
+class Action {
+
+	private:
+
+		int go_to;
+		int cost;
+
+	public:
+
+		Action(int go_to, int cost);
+		int getGoTo();
+		int getActionCost();
+
+};
+
+class Perception {
+
+	private:
+		int perceived_state;
+		List<Action> * legal_actions;
+	public:
+		Perception(int perceived_state, List<Action> * legal_actions);
+		~Perception();
+		int getPerceivedState();
+		List<Action> * getLegalActions();
+};
+
+
+class Problem {
+
+	private:
+
+		int goal;
+
+	public:
+
+		Problem();
+		Problem(int goal);
+		int getGoal();
+};
 
 class Agent {
 	
 	private:
 		
+		int agent_id;
 		bool is_alive;
-		ListNode<Action> action_sequence;
-	
+		List<Action> * action_sequence;
+		bool isGoalState(Perception perception);
+		Problem problem;
+
 	public:
 
-	Agent();
+	Agent(int id);
 	~Agent();
-	virtual void executeAction(Action action) = 0;
-	virtual ListNode<Action> perceiveEnvironment() = 0;
+	void executeAction(Environment env, Action action);
+	Perception perceiveEnvironment(Environment env);
+	void formulateProblem(Problem problem);
 	bool isAlive();
 
 };
