@@ -3,9 +3,9 @@
 
 #include "../data_structures/List.h"
 #include "../data_structures/Graph.h"
-#include "../agents/Agent.h"
+#include "../environments/Environment.h"
 
-class Environment {
+class MapEnvironment {
 
 	private:
 
@@ -14,8 +14,8 @@ class Environment {
 
 
 	public:
-		Environment(Graph state_space);
-		~Environment();
+		MapEnvironment(Graph * state_space);
+		~MapEnvironment();
 		void addAgent(int agent_id);
 		void removeAgent(int agent_id);
 		List<int> * getAgents();

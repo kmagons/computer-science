@@ -72,12 +72,12 @@ bool Agent :: isAlive(){
 	return this->is_alive;
 };
 
-void Agent :: executeAction(Environment env, Action action) {
+void Agent :: executeAction(MapEnvironment env, Action action) {
 	int go_to = action.getGoTo();
 	env.executeAction(this->agent_id, go_to);
 };
 
-Perception Agent :: perceiveEnvironment (Environment env) {
+Perception Agent :: perceiveMapEnvironment (MapEnvironment env) {
 	
 	int agent_location = env.getAgentLocation(this->agent_id);
 	List<int> * legal_actions = env.getLegalActions(this->agent_id);

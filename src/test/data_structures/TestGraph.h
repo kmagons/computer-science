@@ -4,6 +4,8 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../main/data_structures/Graph.h"
+#include "../GraphFileReader.h"
+
 
 using namespace std;
 
@@ -32,6 +34,7 @@ class testgraph : public CPPUNIT_NS :: TestFixture
 
 	private:
 		Graph * graph;
+		GraphFileReader * graph_file;
 		
 		std :: string const TEST_FILE = "./src/test/data/Romania.txt";
 		int number_of_edges;

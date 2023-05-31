@@ -20,7 +20,7 @@ class Queue {
 		int getSize();
 		bool isEmpty();
 		void Enqueue(QueueType elem);
-		QueueType Dequeue() throw ( std::length_error ) ;
+		QueueType Dequeue() ;
 };
 
 
@@ -61,7 +61,7 @@ void Queue<QueueType> :: Enqueue(QueueType elem) {
 };
 
 template <typename QueueType>
-QueueType Queue<QueueType> :: Dequeue() throw ( std::length_error )  {
+QueueType Queue<QueueType> :: Dequeue()  {
 	
 	if(this->isEmpty()){
 		throw std::length_error( this->QUEUE_EMPTY_ERROR);

@@ -1,64 +1,28 @@
 #include "TestGraph.h"
-#include <fstream>
 
 CPPUNIT_TEST_SUITE_REGISTRATION (testgraph);
 
 void testgraph :: setUp (void)
 {
-	fstream file;
-	int number_of_vertices;
-	int number_of_edges;
-	int v, w, distance;
-	std :: string cityName;
-	int cityID;
-	std :: string bfs_output, dfs_output, line = "";
 
-	file.open(this->TEST_FILE);
-
-	if(file.is_open()){
-		file >> number_of_vertices >> number_of_edges;
-
-		this->graph = new Graph ( number_of_vertices );
-
-
-		for(int i = 0; i < number_of_vertices; i++){
-			file >> cityID >> cityName;
-			this->graph->addVertice(cityID, cityName);
-
-		}
-
-		for(int i = 0; i < number_of_edges; i++){
-				file >> v >> w >> distance;
-				this->graph->addEdge(v, w, distance);
-				this->graph->addEdge(w, v, distance);
-		}
-
-		
-		for(int i = 0; i < number_of_vertices; i++){
-				file >> line;
-				bfs_output += line + '\n';
-		}
-
-		for(int i = 0; i < number_of_vertices; i++){
-				file >> line;
-				dfs_output += line + '\n';
-		}
-
-		this->number_of_vertices = number_of_vertices;
-		this->number_of_edges = number_of_edges; 
-		this->bfs_test_output = bfs_output;
-		this->dfs_test_output = dfs_output;
-		file.close();
-	}
+	this->graph_file = new GraphFileReader(this->TEST_FILE);
+	this->graph = graph_file->getGraph();
+	this->number_of_vertices = graph_file->getVerticeCount();
+	this->number_of_edges = graph_file->getEdgeCount(); 
+	this->bfs_test_output = graph_file->getBFSOutput();
+	this->dfs_test_output = graph_file->getDFSOutput();
+	
 }
 
 void testgraph :: tearDown (void) 
 {
-	delete this->graph;
+	delete this->graph_file;
+	this->graph = NULL;
 }
 
 
 void testgraph :: addVerticeTest (void)
+
 {
 	CPPUNIT_ASSERT_EQUAL (this->number_of_vertices, this->graph->getVerticeCount());
 }

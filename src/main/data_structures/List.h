@@ -267,7 +267,7 @@ void  List<ListType> ::  deleteElem(ListType data){
 
 	ListNode<ListType> * current = this->head;
 			
-	while(current && current.getData() != data){
+	while(current && current->getData() != data){
 		current = current->next();
 	}
 	

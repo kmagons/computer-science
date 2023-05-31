@@ -59,8 +59,8 @@ class Agent {
 
 	Agent(int id);
 	~Agent();
-	void executeAction(Environment env, Action action);
-	Perception perceiveEnvironment(Environment env);
+	void executeAction(MapEnvironment env, Action action);
+	Perception perceiveMapEnvironment(MapEnvironment env);
 	void formulateProblem(Problem problem);
 	bool isAlive();
 
